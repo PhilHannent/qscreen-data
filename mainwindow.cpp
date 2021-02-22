@@ -41,6 +41,10 @@ namespace
 MainWindow::MainWindow(QWidget * parent)
     : QMainWindow(parent)
 {
+	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+	// https://doc.qt.io/qt-5/qguiapplication.html#setHighDpiScaleFactorRoundingPolicy
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+
     auto * s = this->screen();
 
     auto * lbl = new QLabel();
