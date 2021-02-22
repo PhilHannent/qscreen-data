@@ -41,10 +41,11 @@ namespace
 MainWindow::MainWindow(QWidget * parent)
     : QMainWindow(parent)
 {
-	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
-	// https://doc.qt.io/qt-5/qguiapplication.html#setHighDpiScaleFactorRoundingPolicy
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+    // https://doc.qt.io/qt-5/qguiapplication.html#setHighDpiScaleFactorRoundingPolicy
     QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
+    // https://doc.qt.io/qt-5/qwidget.html#screen
     auto * s = this->screen();
 
     auto * lbl = new QLabel();
@@ -56,6 +57,8 @@ MainWindow::MainWindow(QWidget * parent)
 
     const QString nl = "\n";
 
+	// https://doc.qt.io/qt-5/qscreen.html
+	// https://doc.qt.io/qt-5/qscreen.html#physicalSize-prop
     const auto phySize = s->physicalSize();
     const auto hypSize = std::sqrt(phySize.width() * phySize.width() +
                                    phySize.height() * phySize.height());
@@ -63,7 +66,9 @@ MainWindow::MainWindow(QWidget * parent)
 
     str += "Screen";
     str += nl + l("name: ") + r(s->name());
+	// https://doc.qt.io/qt-5/qscreen.html#manufacturer-prop
     str += nl + l("manufacturer: ") + r(s->manufacturer());
+	// https://doc.qt.io/qt-5/qscreen.html#model-prop
     str += nl + l("model: ") + r(s->model());
     str += nl + l("serialNumber: ") + r(s->serialNumber());
     str += nl + l("size: ") + st(s->size());
